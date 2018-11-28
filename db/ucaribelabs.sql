@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2018 a las 20:17:26
+-- Tiempo de generación: 28-11-2018 a las 19:13:50
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -146,7 +146,7 @@ CREATE TABLE `subjects` (
 CREATE TABLE `subjectssemester` (
   `id` int(11) NOT NULL,
   `section` int(11) NOT NULL,
-  `state` tinyint(1) NOT NULL DEFAULT '1',
+  `status_id` int(11) NOT NULL DEFAULT '1',
   `user_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `semester_id` int(11) NOT NULL,
@@ -258,7 +258,8 @@ ALTER TABLE `subjectssemester`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_subjects4semester_semesters1_idx` (`semester_id`),
   ADD KEY `fk_subjects4semester_users1_idx` (`user_id`),
-  ADD KEY `fk_subjects4semester_subjects1_idx` (`subject_id`);
+  ADD KEY `fk_subjects4semester_subjects1_idx` (`subject_id`),
+  ADD KEY `fk_subjectsSemester_statuses1_idx` (`status_id`);
 
 --
 -- Indices de la tabla `users`
@@ -341,7 +342,7 @@ ALTER TABLE `usertypes`
 -- Filtros para la tabla `laboratories`
 --
 ALTER TABLE `laboratories`
-  ADD CONSTRAINT `fk_laboratories_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_laboratories_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_laboratories_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
@@ -349,34 +350,34 @@ ALTER TABLE `laboratories`
 --
 ALTER TABLE `requests`
   ADD CONSTRAINT `fk_requests_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_requests_subjectsSemester1` FOREIGN KEY (`subjectSemester_id`) REFERENCES `subjectssemester` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_requests_subjectsSemester1` FOREIGN KEY (`subjectSemester_id`) REFERENCES `subjectssemester` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_requests_types1` FOREIGN KEY (`requestType_id`) REFERENCES `requesttypes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_requests_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_requests_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `requesttypes`
 --
 ALTER TABLE `requesttypes`
-  ADD CONSTRAINT `fk_requestTypes_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_requestTypes_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reservations`
 --
 ALTER TABLE `reservations`
-  ADD CONSTRAINT `fk_schedules_requests1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_schedules_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_schedules_requests1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_schedules_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `semesters`
 --
 ALTER TABLE `semesters`
-  ADD CONSTRAINT `fk_semesters_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_semesters_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `subjects`
 --
 ALTER TABLE `subjects`
-  ADD CONSTRAINT `fk_subjects_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_subjects_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `subjectssemester`
@@ -384,20 +385,21 @@ ALTER TABLE `subjects`
 ALTER TABLE `subjectssemester`
   ADD CONSTRAINT `fk_subjects4semester_semesters1` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_subjects4semester_subjects1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_subjects4semester_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_subjects4semester_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_subjectsSemester_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `fk_users_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_users_userTypes1` FOREIGN KEY (`userType_id`) REFERENCES `usertypes` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usertypes`
 --
 ALTER TABLE `usertypes`
-  ADD CONSTRAINT `fk_userTypes_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_userTypes_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
