@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
+  const users = sequelize.define('users', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -59,4 +59,16 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'users'
   });
+
+  users.associate = (models) =>{
+    // associations can be defined here
+    models.statuses.hasMany(models.users, { foreignKey: "status_id" } );
+    models.usertypes.hasMany(models.users, { foreignKey: "userType_id" } );
+    
+    models.laboratories.belongsTo(models.users, { foreignKey: "user_id" } );
+    models.requests.belongsTo(models.users, { foreignKey: "user_id" } );
+    models.subjectssemester.belongsTo(models.users, { foreignKey: "user_id" } );
+  };
+
+  return users;
 };

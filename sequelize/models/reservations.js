@@ -1,30 +1,27 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('semesters', {
+  const reservations = sequelize.define('reservations', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
-    semester: {
-      type: DataTypes.STRING(45),
+    request_id: {
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      unique: true
+      references: {
+        model: 'requests',
+        key: 'id'
+      }
     },
-    start_date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false
-    },
-    end_date: {
+    date: {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
     status_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '1',
       references: {
         model: 'statuses',
         key: 'id'
@@ -39,6 +36,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'semesters'
+    tableName: 'reservations'
   });
+
+  reservations.associate = (models) =>{
+    // associations can be defined here
+    models.requests.hasMany(models.reservations, { foreignKey: "request_id" });
+    models.statuses.hasMany(models.reservations, { foreignKey: "status_id" });
+  };
+  return reservations;
 };

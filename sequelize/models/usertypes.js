@@ -1,21 +1,20 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('subjects', {
+  const usertypes = sequelize.define('usertypes', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    enrollment: {
+    type: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: true
-    },
-    name: {
-      type: DataTypes.TEXT,
       allowNull: false
+    },
+    permissions: {
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     status_id: {
       type: DataTypes.INTEGER(11),
@@ -35,6 +34,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'subjects'
+    tableName: 'usertypes'
   });
+
+  usertypes.associate = (models) =>{
+    // associations can be defined here
+    models.statuses.hasMany(models.usertypes, { foreignKey: "status_id" });
+    
+    models.users.belongsTo(models.usertypes, { foreignKey: "userType_id" });
+  };
+
+  return usertypes;
 };

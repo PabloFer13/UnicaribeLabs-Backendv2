@@ -1,36 +1,22 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('laboratories', {
+  const requesttypes = sequelize.define('requesttypes', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    short_name: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    building: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    user_id: {
-      type: DataTypes.INTEGER(11),
+    type: {
+      type: DataTypes.STRING(255),
       allowNull: false,
-      references: {
-        model: 'users',
-        key: 'id'
-      }
+      unique: true
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true
+    color: {
+      type: DataTypes.STRING(7),
+      allowNull: false,
+      unique: true
     },
     status_id: {
       type: DataTypes.INTEGER(11),
@@ -50,6 +36,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'laboratories'
+    tableName: 'requesttypes'
   });
+
+  requesttypes.associate = (models) =>{
+    // associations can be defined here
+    models.statuses.hasMany(models.requesttypes,   { foreignKey: "status_id" });
+    
+    models.requests.belongsTo(models.requesttypes, { foreignKey: "requestType_id" });
+  };
+
+  return requesttypes;
 };

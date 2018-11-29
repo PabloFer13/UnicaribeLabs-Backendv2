@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('requests', {
+  const requests = sequelize.define('requests', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -29,6 +29,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'requesttypes',
+        key: 'id'
+      }
+    },
+    laboratory_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      references: {
+        model: 'laboratories',
         key: 'id'
       }
     },
@@ -75,4 +83,17 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'requests'
   });
+
+  requests.associate = (models) =>{
+    // associations can be defined here
+    models.users.hasMany(models.requests, { foreignKey: "user_id" });
+    models.subjectssemester.hasMany(models.requests, { foreignKey: "subjectSemester_id" });
+    models.requesttypes.hasMany(models.requests, { foreignKey: "requestType_id" });
+    models.laboratories.hasMany(models.requests, { foreignKey: "laboratory_id" });
+    models.statuses.hasMany(models.requests, { foreignKey: "status_id" });
+    
+    models.reservations.belongsTo(models.requests,  { foreignKey: "request_id" });
+  };
+  
+  return requests;
 };

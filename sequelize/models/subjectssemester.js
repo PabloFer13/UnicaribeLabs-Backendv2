@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('subjectssemester', {
+  const subjectssemester = sequelize.define('subjectssemester', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -56,4 +56,16 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'subjectssemester'
   });
+
+  subjectssemester.associate = (models) =>{
+    // associations can be defined here
+    models.statuses.hasMany(models.subjectssemester, { foreignKey: "status_id" });
+    models.users.hasMany(models.subjectssemester, { foreignKey: "user_id" });
+    models.subjects.hasMany(models.subjectssemester, { foreignKey: "subject_id" });
+    models.semesters.hasMany(models.subjectssemester, { foreignKey: "semester_id" });
+    
+    models.requests.belongsTo(models.subjectssemester, { foreignKey: "subjectSemester_id" });
+  };
+
+  return subjectssemester;
 };
