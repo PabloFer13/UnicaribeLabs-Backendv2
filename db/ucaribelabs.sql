@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2018 a las 19:13:50
+-- Tiempo de generación: 29-11-2018 a las 06:02:45
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -51,6 +51,7 @@ CREATE TABLE `requests` (
   `user_id` int(11) NOT NULL,
   `subjectSemester_id` int(11) NOT NULL,
   `requestType_id` int(11) NOT NULL,
+  `laboratory_id` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `dia` int(11) NOT NULL,
@@ -209,7 +210,8 @@ ALTER TABLE `requests`
   ADD KEY `fk_requests_statuses1_idx` (`status_id`),
   ADD KEY `fk_requests_types1_idx` (`requestType_id`),
   ADD KEY `fk_requests_users1_idx` (`user_id`),
-  ADD KEY `fk_requests_subjectsSemester1_idx` (`subjectSemester_id`);
+  ADD KEY `fk_requests_subjectsSemester1_idx` (`subjectSemester_id`),
+  ADD KEY `fk_requests_laboratories1_idx` (`laboratory_id`);
 
 --
 -- Indices de la tabla `requesttypes`
@@ -284,7 +286,7 @@ ALTER TABLE `usertypes`
 -- AUTO_INCREMENT de la tabla `laboratories`
 --
 ALTER TABLE `laboratories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `requests`
@@ -296,43 +298,43 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT de la tabla `requesttypes`
 --
 ALTER TABLE `requesttypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `subjectssemester`
 --
 ALTER TABLE `subjectssemester`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usertypes`
 --
 ALTER TABLE `usertypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -349,6 +351,7 @@ ALTER TABLE `laboratories`
 -- Filtros para la tabla `requests`
 --
 ALTER TABLE `requests`
+  ADD CONSTRAINT `fk_requests_laboratories1` FOREIGN KEY (`laboratory_id`) REFERENCES `laboratories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_requests_statuses1` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_requests_subjectsSemester1` FOREIGN KEY (`subjectSemester_id`) REFERENCES `subjectssemester` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_requests_types1` FOREIGN KEY (`requestType_id`) REFERENCES `requesttypes` (`id`) ON UPDATE CASCADE,

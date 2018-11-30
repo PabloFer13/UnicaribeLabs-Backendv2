@@ -1,27 +1,14 @@
-const { buildSchema } = require('graphql');
-const graphqlHTTP = require('express-graphql');
+const graphqlHTTP  = require('express-graphql');
+const router       = require('express').Router();
+const cors         = require('cors'); // Para que se pueda acceder desde otros origenes
 
-const router = require('express').Router()
+const schema = require('../graphql/index');
 
-// Se crea el esquema usando el lenguaje de esquema GraphQL
-let schema = buildSchema(`
-  type Query {
-    hello_GraphQL: String
-  }
-`);
-
-//  root proporcina una funcion de resolucion para el endpoint
-let root = {
-  // Asegurate que sea el mismo nombre que en el schema
-  hello_GraphQL: () => {
-    return 'Hola GraphQL :D';
-  }
-};
-
+router.use(cors());
 router.use('/', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true
+  schema:   schema,
+  graphiql: true,
+  pretty:   true
 }));
 
 module.exports = router;
