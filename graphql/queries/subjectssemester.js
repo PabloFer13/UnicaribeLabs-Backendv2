@@ -17,10 +17,10 @@ module.exports = {
   select_SubjectsForSemester: {
     type: new GraphQLList(subjectssemesterSchema),
     args:{
-      // id:       { type: GraphQLID },
-      // name:     { type: GraphQLString },
-      // building: { type: GraphQLString },
-      // state:    { type: GraphQLBoolean},
+      id       : { type: GraphQLID },
+      name     : { type: GraphQLString },
+      building : { type: GraphQLString },
+      state    : { type: GraphQLBoolean},
       
       offset: {
         type: GraphQLInt,

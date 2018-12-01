@@ -17,7 +17,7 @@ module.exports = {
   select_Semesters: {
     type: new GraphQLList(semesterSchema),
     args:{
-      id:       { type: GraphQLID },
+      id      : { type: GraphQLID },
       semester: { type: GraphQLString },
       
       offset: {

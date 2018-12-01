@@ -11,7 +11,7 @@ class App {
 		// Objeto que contiene las configuraciones
 		this.configs = {
 			get port(){
-				return process.env.PORT || 3000;
+				return process.env.PORT || 3001;
 			}
 		};
 	}

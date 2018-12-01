@@ -17,9 +17,9 @@ module.exports = {
   select_RequestTypes: {
     type: new GraphQLList(requesttypesSchema),
     args:{
-      id:    { type: GraphQLID },
-      type:  { type: GraphQLString },
-      color: { type: GraphQLString },
+      id    : { type: GraphQLID },
+      type  : { type: GraphQLString },
+      color : { type: GraphQLString },
       
       offset: {
         type: GraphQLInt,

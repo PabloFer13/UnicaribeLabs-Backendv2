@@ -29,7 +29,7 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(requestSchema),
         description: '',
         resolve(reservation){
-          return models.requests.findById(reservation.request_id);
+          return models.requests.findByPk(reservation.request_id);
         }
       },
       date: {
@@ -43,7 +43,7 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(statusSchema),
         description: '',
         resolve (reservation) {
-          return models.statuses.findById(reservation.status_id);
+          return models.statuses.findByPk(reservation.status_id);
         }
       },
       createdAt: {

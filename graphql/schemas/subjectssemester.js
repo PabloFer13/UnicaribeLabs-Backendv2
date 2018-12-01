@@ -38,28 +38,28 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(statusSchema),
         description: '',
         resolve (subjec) {
-          return models.statuses.findById(subjec.status_id);
+          return models.statuses.findByPk(subjec.status_id);
         }
       },
       teacher: {
         type: new GraphQLNonNull(userSchema),
         description: '',
         resolve (subjectsemester) {
-          return models.users.findById(subjectsemester.user_id,{ attributes: { exclude: ['password'] }});
+          return models.users.findByPk(subjectsemester.user_id,{ attributes: { exclude: ['password'] }});
         }
       },
       subject: {
         type: new GraphQLNonNull(subjectSchema),
         description: '',
         resolve (subjectsemester) {
-          return models.subjects.findById(subjectsemester.subject_id);
+          return models.subjects.findByPk(subjectsemester.subject_id);
         }
       },
       semester: {
         type: new GraphQLNonNull(semesterSchema),
         description: '',
         resolve (subjectsemester) {
-          return models.semesters.findById(subjectsemester.semester_id);
+          return models.semesters.findByPk(subjectsemester.semester_id);
         }
       },
       createdAt: {

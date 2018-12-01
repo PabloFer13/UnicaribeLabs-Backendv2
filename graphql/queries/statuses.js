@@ -17,9 +17,9 @@ module.exports = {
   select_Status: {
     type: new GraphQLList(statusSchema),
     args:{
-      id:         { type: GraphQLID },
-      status:     { type: GraphQLString },
-      state:      { type: GraphQLBoolean},
+      id     : { type: GraphQLID },
+      status : { type: GraphQLString },
+      state  : { type: GraphQLBoolean},
       
       offset: {
         type: GraphQLInt,

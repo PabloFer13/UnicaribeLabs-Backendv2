@@ -50,7 +50,7 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(userSchema),
         description: '',
         resolve (laboratory) {
-          return models.users.findById(laboratory.user_id,{ attributes: { exclude: ['password']} });
+          return models.users.findByPk(laboratory.user_id,{ attributes: { exclude: ['password']} });
         }
       },
       description: {
@@ -64,7 +64,7 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(statusSchema),
         description: '',
         resolve (laboratory) {
-          return models.statuses.findById(laboratory.status_id);
+          return models.statuses.findByPk(laboratory.status_id);
         }
       },
       createdAt: {

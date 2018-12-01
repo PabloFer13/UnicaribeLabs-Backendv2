@@ -71,14 +71,14 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(userTypeSchema),
         description: '',
         resolve (user) {
-          return models.usertypes.findById(user.userType_id);
+          return models.usertypes.findByPk(user.userType_id);
         }
       },
       status: {
         type: new GraphQLNonNull(statusSchema),
         description: '',
         resolve (user) {
-          return models.statuses.findById(user.status_id);
+          return models.statuses.findByPk(user.status_id);
         }
       },
       createdAt: {

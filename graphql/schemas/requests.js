@@ -32,28 +32,28 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(userSchema),
         description: '',
         resolve (request) {
-          return models.users.findById(request.user_id,{ attributes: { exclude: ['password']} });
+          return models.users.findByPk(request.user_id,{ attributes: { exclude: ['password']} });
         }
       },
       subjectSemester_id: {
         type: new GraphQLNonNull(subjectsemesterSchema),
         description: '',
         resolve (request) {
-          return models.subjectssemester.findById(request.subjectSemester_id);
+          return models.subjectssemester.findByPk(request.subjectSemester_id);
         }
       },
       requestType_id: {
         type: new GraphQLNonNull(requesttypeSchema),
         description: '',
         resolve (request) {
-          return models.requesttypes.findById(request.requestType_id);
+          return models.requesttypes.findByPk(request.requestType_id);
         }
       },
       laboratory_id: {
         type: new GraphQLNonNull(laboratorySchema),
         description: '',
         resolve (request) {
-          return models.laboratories.findById(request.laboratory_id);
+          return models.laboratories.findByPk(request.laboratory_id);
         }
       },
       start_date: {
@@ -95,7 +95,7 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(statusSchema),
         description: '',
         resolve (request) {
-          return models.statuses.findById(request.status_id);
+          return models.statuses.findByPk(request.status_id);
         }
       },
       description: {

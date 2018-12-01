@@ -42,7 +42,7 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(statusSchema),
         description: '',
         resolve (requesttype) {
-          return models.statuses.findById(requesttype.status_id);
+          return models.statuses.findByPk(requesttype.status_id);
         }
       },
       createdAt: {

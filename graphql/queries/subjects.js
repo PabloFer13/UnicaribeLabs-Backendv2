@@ -17,9 +17,9 @@ module.exports = {
   select_Subjects: {
     type: new GraphQLList(subjectSchema),
     args:{
-      id:         { type: GraphQLID },
-      enrollment: { type: GraphQLString },
-      name:       { type: GraphQLString },
+      id         : { type: GraphQLID },
+      enrollment : { type: GraphQLString },
+      name       : { type: GraphQLString },
       
       offset: {
         type: GraphQLInt,
