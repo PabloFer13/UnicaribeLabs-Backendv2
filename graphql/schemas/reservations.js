@@ -14,7 +14,7 @@ const models  = require ('../../sequelize/models/index'),
       requestSchema = require('./requests');
 
 module.exports = new GraphQLObjectType({
-  name: 'Schedule',
+  name: 'Reservation',
   description: '',
   fields () {
     return {

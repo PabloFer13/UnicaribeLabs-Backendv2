@@ -1,5 +1,4 @@
 const models = require('../../sequelize/models');
-//TODO: Comprobrarlo
 /** 25 Nov 2018 */
 models.requests.findAll({
   include: [

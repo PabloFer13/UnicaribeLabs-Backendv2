@@ -41,20 +41,10 @@ module.exports = {
         type: new GraphQLNonNull(GraphQLID),
         description: 'El ID del registro a modificar.',
       },
-      type: {
-        type: GraphQLString,
-        description: '',
-      },
-      permissions: {
-        type: GraphQLString,
-        description: '',
-      },
-      status: {
-        type: statusScalar,
-        description:'',
-      }
+      type        : { type: GraphQLString },
+      permissions : { type: GraphQLString },
+      status      : { type: statusScalar }
     },
-  
     resolve: async(root, args) =>{
       const usertype = await models.usertypes.findByPk(args.id);
       if (usertype != null){

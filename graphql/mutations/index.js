@@ -1,6 +1,5 @@
 const {
-  create_User_Teacher,
-  create_User_Trainee,
+  create_User,
   update_User,
   update_User_password,
 } = require('./users');
@@ -33,10 +32,7 @@ const {
   update_SubjectSemester,
 } = require('./subjectssemester');
 const {
-  create_Schedules_Semester,
-  create_Schedules_Temporal,
-  create_Schedule,
-  update_Schedule,
+  create_Reservation,
 } = require('./reservations');
 
 module.exports = {
@@ -44,15 +40,12 @@ module.exports = {
   create_Laboratory, //
   update_Laboratory, //
 /** requests */
-  //
+  // Se crea la solicitud en la reservación
 /** requesttypes */
   create_RequestType, //
   update_RequestType, //
 /** reservations */
-  // create_Schedules_Semester,
-  // create_Schedules_Temporal,
-  // create_Schedule,
-  // update_Schedule,
+  create_Reservation,
 /** semesters */
   create_Semester, //
   update_Semester, //
@@ -66,10 +59,9 @@ module.exports = {
   create_SubjectSemester, //
   update_SubjectSemester, //
 /** users */
-  // create_User_Teacher,
-  // create_User_Trainee,
-  // update_User,
-  // update_User_password,
+  create_User, //
+  update_User, //
+  update_User_password, //
 /** usertypes */
   create_Usertype, //
   update_Usertype, //

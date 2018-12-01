@@ -4,7 +4,7 @@ const {
 
 
 module.exports = new GraphQLEnumType({
-    name: 'daysEnumType',
+    name: 'daysScalar',
     values: {
       Domingo:   { value: 0 },
       Lunes:     { value: 1 },
