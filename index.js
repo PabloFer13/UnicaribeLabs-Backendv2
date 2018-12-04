@@ -1,6 +1,7 @@
 const express = require('express');
 // Importamos nuestros archivos de configuración para las rutas
 const Routes = require('./routes/index.js'); 
+require('dotenv').config();
 
 class App {
 	/**

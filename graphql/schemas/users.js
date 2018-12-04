@@ -94,6 +94,12 @@ module.exports = new GraphQLObjectType({
         resolve(user) {
           return new Date(user.updatedAt).toString();
         }
+      },
+      token: {
+        type: GraphQLString,
+        resolve(user){
+          return user.token;
+        }
       }
     };
   }

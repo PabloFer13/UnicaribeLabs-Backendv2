@@ -1,6 +1,7 @@
 
 const {
   select_Users,
+  login
 } = require('./users');
 const {
   select_UserTypes,
@@ -40,6 +41,7 @@ module.exports = {
   select_RequestTypes,
   select_Laboratories,
   select_SubjectsForSemester,
+  login
   // select_Schedule,
   // select_Schedule_ByLaboratoryANDRange,
 }

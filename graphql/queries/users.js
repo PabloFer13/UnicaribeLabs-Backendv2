@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const {
   GraphQLID,
   GraphQLInt,
@@ -43,5 +45,33 @@ module.exports = {
       });
     }
   },
+  login: {
+    type: userSchema,
+    args:{
+      email: { type: GraphQLString },
+      password: { type: GraphQLString },
+    },
+    async resolve(root, args) {
+      const { email, password } = args;
+      const user = await models.users.findOne({ where: { email } });
 
+      if(!user){
+        throw new Error('Email no registrado');
+      }
+
+      if(!bcrypt.compareSync(password, user.password)){
+        throw new Error('Password Incorrecto')
+      }
+
+      const obj = {
+        name: user.first_name,
+        lastName: user.last_name,
+        email: user.email
+      };
+
+      user.token = jwt.sign(obj, process.env.SECRET);
+      
+      return user;
+    }
+  }
 }
