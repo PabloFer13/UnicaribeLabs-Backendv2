@@ -26,6 +26,8 @@ const {
 } = require('./subjectssemester');
 const {
   // select_Requests,
+  user_Requests,
+  encargado_Requests
 } = require('./requests');
 const {
   // select_Schedule,
@@ -41,7 +43,9 @@ module.exports = {
   select_RequestTypes,
   select_Laboratories,
   select_SubjectsForSemester,
-  login
+  login,
+  user_Requests,
+  encargado_Requests
   // select_Schedule,
   // select_Schedule_ByLaboratoryANDRange,
 }

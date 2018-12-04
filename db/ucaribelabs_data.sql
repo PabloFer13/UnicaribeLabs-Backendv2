@@ -18,8 +18,10 @@ INSERT INTO `statuses`
 INSERT INTO `usertypes`
 (`id`, `type`         , `permissions`, `createdAt`          , `updatedAt`          ) VALUES
 (1   , 'Administrador', '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(2   , 'Becario'      , '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(3   , 'Profesor'     , '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42');
+(2   , 'Encargado'    , '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(3   , 'Becario'      , '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(4   , 'Profesor'     , '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(5   , 'Alumno'       , '000'        , '2018-10-24 02:18:42', '2018-10-24 02:18:42');
 
 --
 -- Volcado de datos para la tabla `users`
@@ -28,12 +30,12 @@ INSERT INTO `usertypes`
 INSERT INTO `users`
 (`id`, `first_name`      , `last_name`        , `email`                    , `password`                                                    , `url_pp`, `phone_number`, `userType_id`, `status_id`, `createdAt`          , `updatedAt`          ) VALUES
 (1   , 'Yarely'          , 'Báez'             , 'ybaez@ucaribe.edu.mx'     , '$2a$10$TM8pHeHDO6VOchWD.pHmu.C/CD9d3QbI66wr3sJGWxpAlz2/znl5.', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(2   , 'David Israel'    , 'Flores Granados'  , 'dflores@ucaribe.edu.mx'   , '$2a$10$m/8b6VyFJ1cxM16BlejUvuRR2Bi8OpFrCbX/66Pn3WObg7kAbXiMu', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(3   , 'Diana del Pilar' , 'Cobos Del Angel'  , 'dcobos@ucaribe.edu.mx'    , '$2a$10$KvpOxVBniGHr.Te3KjsYReFbyccGxsKNlJytVUD0voqfOlEfuWymi', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(4   , 'Juan Carlos'     , 'Sandoval Villegas', 'jcvillegas@ucaribe.edu.mx', '$2a$10$qQpPLVUS4q9kjr0TcfU2r.F5QTgukgKyA/nk3cW/uP2AHLKrWI0FG', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(6   , 'Carlos Francisco', 'Paz Cuevas'       , 'cpaz@ucaribe.edu.mx'      , '$2a$10$Ol8vOUxm0QtM/pzjMq9HBuNaTjl98Hicoh9UEB6dSpTgAFryooHpO', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(7   , 'Cyntya'          , 'Olivares Gonzales', 'colivaresz@ucaribe.edu.mx', '$2a$10$GheEka06033KYdA/6fxbcepnj4ooxHPRn5HLichlAdymdb7on8Cee', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
-(8   , 'Monica Patricia' , 'René Larrosa'     , 'mrene@ucaribe.edu.mx'     , '$2a$10$5jCBe6I98DZyrMFU9D0F.eW6eOw0kjtpMDS9ThRxgPr3q6JTYPce2', NULL    , NULL          , 1            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42');
+(2   , 'David Israel'    , 'Flores Granados'  , 'dflores@ucaribe.edu.mx'   , '$2a$10$m/8b6VyFJ1cxM16BlejUvuRR2Bi8OpFrCbX/66Pn3WObg7kAbXiMu', NULL    , NULL          , 2            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(3   , 'Diana del Pilar' , 'Cobos Del Angel'  , 'dcobos@ucaribe.edu.mx'    , '$2a$10$KvpOxVBniGHr.Te3KjsYReFbyccGxsKNlJytVUD0voqfOlEfuWymi', NULL    , NULL          , 2            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(4   , 'Juan Carlos'     , 'Sandoval Villegas', 'jcvillegas@ucaribe.edu.mx', '$2a$10$qQpPLVUS4q9kjr0TcfU2r.F5QTgukgKyA/nk3cW/uP2AHLKrWI0FG', NULL    , NULL          , 2            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(6   , 'Carlos Francisco', 'Paz Cuevas'       , 'cpaz@ucaribe.edu.mx'      , '$2a$10$Ol8vOUxm0QtM/pzjMq9HBuNaTjl98Hicoh9UEB6dSpTgAFryooHpO', NULL    , NULL          , 2            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(7   , 'Cyntya'          , 'Olivares Gonzales', 'colivaresz@ucaribe.edu.mx', '$2a$10$GheEka06033KYdA/6fxbcepnj4ooxHPRn5HLichlAdymdb7on8Cee', NULL    , NULL          , 2            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42'),
+(8   , 'Monica Patricia' , 'René Larrosa'     , 'mrene@ucaribe.edu.mx'     , '$2a$10$5jCBe6I98DZyrMFU9D0F.eW6eOw0kjtpMDS9ThRxgPr3q6JTYPce2', NULL    , NULL          , 2            , 1          , '2018-10-24 02:18:42', '2018-10-24 02:18:42');
 
 
 --
