@@ -41,11 +41,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     start_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     end_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     dia: {

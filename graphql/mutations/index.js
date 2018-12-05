@@ -34,6 +34,9 @@ const {
 const {
   create_Reservation,
 } = require('./reservations');
+const {
+  create_request
+} = require('./requests');
 
 module.exports = {
 /** laboratories */
@@ -41,6 +44,7 @@ module.exports = {
   update_Laboratory, //
 /** requests */
   // Se crea la solicitud en la reservación
+  create_request,
 /** requesttypes */
   create_RequestType, //
   update_RequestType, //

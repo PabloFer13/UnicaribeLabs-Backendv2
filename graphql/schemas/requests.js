@@ -1,3 +1,4 @@
+const moment = require('moment');
 const {
   GraphQLID,
   GraphQLInt,
@@ -60,14 +61,14 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLNonNull(GraphQLString),
         description: '',
         resolve(request) {
-          return request.start_date;
+          return moment(request.start_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
         }
       },
       end_date: {
         type: new GraphQLNonNull(GraphQLString),
         description: '',
         resolve(request) {
-          return request.end_date;
+          return moment(request.end_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
         }
       },
       dia: {

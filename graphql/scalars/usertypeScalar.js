@@ -7,7 +7,9 @@ module.exports = new GraphQLEnumType({
     name: 'usertypeScalar',
     values: {
       Administrador : { value: 1 },
-      Becario       : { value: 2 },
-      Profesor      : { value: 3 },
+      Encargado     : { value: 2 },
+      Becario       : { value: 3 },
+      Profesor      : { value: 4 },
+      Alumno        : { value: 5 },
     }
   });
