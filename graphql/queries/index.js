@@ -8,6 +8,7 @@ const {
 } = require('./usertypes');
 const {
   select_Semesters,
+  get_active_Semester
 } = require('./semesters');
 const {
   select_Subjects,
@@ -23,6 +24,7 @@ const {
 } = require('./laboratories');
 const {
   select_SubjectsForSemester,
+  get_active_Subjects
 } = require('./subjectssemester');
 const {
   // select_Requests,
@@ -38,11 +40,13 @@ module.exports = {
   select_Users,
   select_UserTypes,
   select_Semesters,
+  get_active_Semester,
   select_Subjects,
   select_Status,
   select_RequestTypes,
   select_Laboratories,
   select_SubjectsForSemester,
+  get_active_Subjects,
   login,
   user_Requests,
   encargado_Requests

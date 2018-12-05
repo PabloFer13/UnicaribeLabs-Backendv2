@@ -41,5 +41,10 @@ module.exports = {
       });
     }
   },
-
+  get_active_Semester: {
+    type: semesterSchema,
+    resolve(root, args){
+      return models.semesters.findOne({ where: { status_id: 1 }, order: [['updatedAt', 'ASC']] });
+    }
+  }
 }

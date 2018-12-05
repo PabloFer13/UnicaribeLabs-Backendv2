@@ -43,6 +43,18 @@ module.exports = {
       });
     }
   },
-
+  get_active_Subjects: {
+    type: new GraphQLList(subjectssemesterSchema),
+    async resolve(root, args) {
+      return models.subjectssemester.findAll({
+        where: {
+          status_id: 1
+        },
+        include:[
+          { model: models.subjects }
+        ]
+      });
+    }
+  }
   
 }
