@@ -81,8 +81,6 @@ module.exports = {
         ]
       });
 
-      console.log(request)
-
       return request;
 
     }
